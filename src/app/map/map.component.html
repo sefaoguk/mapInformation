@@ -1,0 +1,205 @@
+<div class="navbar">
+    <a href="" class="logo">PLANETRAVEL</a>
+  </div>
+  <div class="container">
+  
+    <div id="map" class="map" (click)="openPopup($event)">
+  
+    </div>
+  
+    <div id="popup" class="ol-popup" *ngIf="closer" [ngStyle]="{'left.px': x, 'top.px': y}">
+      <a href="" id="popup-closer" class="ol-popup-closer" (click)="closePopup()"></a>
+      <div id="popup-content">
+        <div class="popupContentHeader">
+          <span> Welcome to </span>
+          <span>-</span>
+          <span class="popupContentHeaderLogo"> PlaneTravel</span>
+          <span></span>
+        </div>
+        <div class="popupContentBody">
+  
+          <form action="" [formGroup]="exform">
+            <div class="form-group">
+  
+              <ul class="information">
+                <li class="informationItem"><span> İsim </span>: <input type="text" formControlName="name"> </li>
+                <li class="informationItem"><span> Soyisim </span>: <input type="text" formControlName="surname"> </li>
+                <li class="informationItem"><span> Telefon </span> :<input type="text" formControlName="telephone"> </li>
+                <li class="informationItem">  <label for="label">Seçiniz  </label>:
+                  <select class="selectGroup" name="cars" id="cars">
+                    <option value="ev">Ev</option>
+                    <option value="is">İş</option>
+                    <option value="okul">Okul</option>
+                    <option value="diger">Diğer</option>
+                  </select> </li>
+              </ul>
+  
+              <div class="select">
+              
+              </div>
+             
+  
+              <div>
+                <p>Coordinate :</p>
+                <span>  {{map.hdms[0]}} </span> - 
+                <span>  {{map.hdms[1]}}</span>
+            
+              </div>
+              <button class="btnSubmit" (click)="submitDatabase()">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+  
+    </div>
+  
+  
+  
+  
+    <!-- <div id="popup" class="ol-popup" *ngIf="closer" [ngStyle]="{'left.px': x, 'top.px': y}">
+          <a href="" id="popup-closer" class="ol-popup-closer" (click)="closePopup()"></a>
+          <div id="popup-content">
+              <div class="popupContentHeader">
+                  <span> Welcome to </span>
+                  <span>-</span>
+                  <span class="popupContentHeaderLogo"> PlaneTravel</span>
+                  <span></span>
+              </div>
+              <div class="popupContentBody">
+                  <div>
+                      Coordinate :
+                      <p> {{map.hdms}} </p>
+                  </div>
+                  <ul class="information">
+  
+                      <li class="informationItem"><span> İsim </span>: <input type="text"> </li>
+                      <li class="informationItem"><span> Soyisim </span>: <input type="text"> </li>
+                      <li class="informationItem"><span> Telefon </span> :<input type="text"> </li>
+                  </ul>
+                  <ul class="informationRadio">
+                      <li class="informationItemRadio"> <span> Ev </span>:<input type="radio" name="1" checked="checked"></li>
+                      <li class="informationItemRadio"> <span>İş </span>:<input type="radio" name="1"></li>
+                      <li class="informationItemRadio"> <span>Okul </span>:<input type="radio" name="1"></li>
+                  </ul>
+                   <button class="btnSubmit">Submit</button>
+              </div>
+          </div>
+  
+      </div> -->
+  
+  
+  
+  
+  
+  
+  </div>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <!-- 
+  <div id="map" (click)="openPopup()" class="map">
+  
+  </div>
+  
+  <div id="popup"  class="ol-popup">
+  
+      <a href="" id="popup-closer"  class="ol-popup-closer"></a>
+      
+      <div id="popup-content">
+          
+      </div>
+  </div>
+  
+  
+  
+  import { Component, OnInit } from '@angular/core';
+  import 'ol/ol.css';
+  import Map from 'ol/Map';
+  import Overlay from 'ol/Overlay';
+  import TileLayer from 'ol/layer/Tile';
+  import View from 'ol/View';
+  import OSM from 'ol/source/OSM';
+  import {toLonLat} from 'ol/proj';
+  import {toStringHDMS} from 'ol/coordinate';
+  
+  @Component({
+    selector: 'app-map',
+    templateUrl: './map.component.html',
+    styleUrls: ['./map.component.css']
+  })
+  export class MapComponent implements OnInit {
+  
+  
+  
+     
+     
+    
+    constructor() { }
+    ngOnInit(): void 
+    {
+      const container = document.getElementById('popup');
+     const content = document.getElementById('popup-content');
+     const scloser = document.getElementById('popup-closer');
+  
+  
+      const overlay = new Overlay({
+        element: container,
+        autoPan: true,
+        autoPanAnimation: {
+          duration: 250,
+        },
+      });
+    
+      
+       const map = new Map({
+        layers: [
+          new TileLayer({
+            source: new OSM(
+            )
+          }) ],
+        overlays: [overlay],
+        target: 'map',
+        view: new View({
+          center: [0, 0],
+          zoom: 2,
+        })
+      });
+  
+      console.log(map)
+      map.on('singleclick', function (evt) {
+        const coordinate = evt.coordinate;
+        const hdms = toStringHDMS(toLonLat(coordinate));
+      
+        this.content.innerHTML = '<p>You clicked here:</p><code>' + hdms + '</code>';
+        this.overlay.setPosition(coordinate);
+      });
+    }
+    
+  openPopup()
+  {
+    
+  }
+    
+    
+    
+  
+     
+  
+  } -->

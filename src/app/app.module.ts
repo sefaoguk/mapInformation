@@ -1,14 +1,20 @@
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
+import { MapComponent } from './map/map.component';
+import { MapModule } from './map/map.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MapComponent
   ],
   imports: [
-    BrowserModule
+    BrowserModule,
+    MapModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
